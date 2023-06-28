@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +34,8 @@ public class DiseaseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(diseaseService.create(requestBody));
     }
 
-    @GetMapping
-    public ResponseEntity<Object> getOneByName(@RequestParam(name = "name", required = true) String name) {
+    @GetMapping("/{name}")
+    public ResponseEntity<Object> getOneByName(@PathVariable String name) {
         Optional<DiseaseModel> disease = diseaseService.getOneByName(name);
 
         if (!disease.isPresent()) {
@@ -44,7 +45,7 @@ public class DiseaseController {
         return ResponseEntity.status(HttpStatus.OK).body(disease.get());
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<DiseaseModel>> getAll() {
         return ResponseEntity.status(HttpStatus.OK).body(diseaseService.getAll());
     }
