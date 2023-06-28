@@ -1,5 +1,7 @@
 package com.example.javahealthrisks.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,10 @@ public class DiseaseService {
         BeanUtils.copyProperties(diseaseDto, newDisease);
 
         return diseaseRepository.save(newDisease);
+    }
+
+    public Optional<DiseaseModel> getOneByName(String name) {
+        return diseaseRepository.findById(name);
     }
 
 }
