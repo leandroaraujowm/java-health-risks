@@ -6,14 +6,15 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.javahealthrisks.dtos.DiseaseDto;
+import com.example.javahealthrisks.dtos.UpdateDiseaseDto;
 import com.example.javahealthrisks.models.DiseaseModel;
 import com.example.javahealthrisks.services.DiseaseService;
 
@@ -45,9 +46,16 @@ public class DiseaseController {
         return ResponseEntity.status(HttpStatus.OK).body(disease.get());
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<DiseaseModel>> getAll() {
         return ResponseEntity.status(HttpStatus.OK).body(diseaseService.getAll());
+    }
+
+    @PatchMapping("/{name}")
+    public ResponseEntity<Void> updateOneByName(@PathVariable String name, @RequestBody UpdateDiseaseDto requestBody) {
+        diseaseService.updateOneByName(name, requestBody);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

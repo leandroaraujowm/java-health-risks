@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.example.javahealthrisks.dtos.DiseaseDto;
+import com.example.javahealthrisks.dtos.UpdateDiseaseDto;
 import com.example.javahealthrisks.models.DiseaseModel;
 import com.example.javahealthrisks.repositories.DiseaseRepository;
 
@@ -32,6 +33,12 @@ public class DiseaseService {
 
     public List<DiseaseModel> getAll() {
         return diseaseRepository.findAll();
+    }
+
+    public void updateOneByName(String name, UpdateDiseaseDto updateDiseaseDto) {
+        DiseaseModel diseaseModel = diseaseRepository.findById(name).get();
+        diseaseModel.setGrade(updateDiseaseDto.grade());
+        diseaseRepository.save(diseaseModel);
     }
 
 }
