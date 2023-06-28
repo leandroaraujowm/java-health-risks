@@ -1,5 +1,6 @@
 package com.example.javahealthrisks.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -27,6 +28,10 @@ public class DiseaseService {
 
     public Optional<DiseaseModel> getOneByName(String name) {
         return diseaseRepository.findById(name);
+    }
+
+    public List<DiseaseModel> getAll() {
+        return diseaseRepository.findAll();
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.javahealthrisks.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,11 @@ public class DiseaseController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(disease.get());
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<DiseaseModel>> getAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(diseaseService.getAll());
     }
 
 }
