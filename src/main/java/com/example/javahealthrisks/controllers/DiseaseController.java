@@ -25,43 +25,43 @@ import jakarta.validation.Valid;
 @RequestMapping("/disease")
 public class DiseaseController {
 
-    private final DiseaseService diseaseService;
+    private final DiseaseService service;
 
-    public DiseaseController(DiseaseService diseaseService) {
-        this.diseaseService = diseaseService;
+    public DiseaseController(DiseaseService service) {
+        this.service = service;
     }
 
     @PostMapping
     public ResponseEntity<DiseaseModel> create(@RequestBody @Valid DiseaseDto requestBody) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(diseaseService.create(requestBody));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(requestBody));
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<Object> getOneByName(@PathVariable String name) {
-        Optional<DiseaseModel> disease = diseaseService.getOneByName(name);
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneById(@PathVariable String id) {
+        Optional<DiseaseModel> diseaseOpt = service.getOneById(id);
 
-        if (!disease.isPresent()) {
+        if (!diseaseOpt.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(disease.get());
+        return ResponseEntity.status(HttpStatus.OK).body(diseaseOpt.get());
     }
 
     @GetMapping
     public ResponseEntity<List<DiseaseModel>> getAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(diseaseService.getAll());
+        return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
     }
 
-    @PatchMapping("/{name}")
-    public ResponseEntity<Void> updateOneByName(@PathVariable String name, @RequestBody UpdateDiseaseDto requestBody) {
-        diseaseService.updateOneByName(name, requestBody);
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateOneById(@PathVariable String id, @RequestBody UpdateDiseaseDto requestBody) {
+        service.updateOneById(id, requestBody);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/{name}")
-    public ResponseEntity<Void> remove(@PathVariable String name) {
-        diseaseService.remove(name);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> removeOneById(@PathVariable String id) {
+        service.removeOneById(id);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
