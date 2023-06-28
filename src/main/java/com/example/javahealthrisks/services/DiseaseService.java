@@ -41,4 +41,8 @@ public class DiseaseService {
         diseaseRepository.save(diseaseModel);
     }
 
+    public void remove(String name) {
+        diseaseRepository.deleteById(name);
+    }
+
 }

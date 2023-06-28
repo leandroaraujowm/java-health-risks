@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,6 +55,13 @@ public class DiseaseController {
     @PatchMapping("/{name}")
     public ResponseEntity<Void> updateOneByName(@PathVariable String name, @RequestBody UpdateDiseaseDto requestBody) {
         diseaseService.updateOneByName(name, requestBody);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Void> remove(@PathVariable String name) {
+        diseaseService.remove(name);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
