@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<StandardException> notFoundExceptionHandler(NotFoundException e, HttpServletRequest request) {
-        var standardException = new StandardException(e.getMessage(), "Not found");
+        var standardException = new StandardException("Not found", e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(standardException);
     }
 

@@ -1,7 +1,7 @@
 package com.example.javahealthrisks.controllers;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.javahealthrisks.dtos.DiseaseDto;
 import com.example.javahealthrisks.dtos.UpdateDiseaseDto;
@@ -32,19 +33,18 @@ public class DiseaseController {
     }
 
     @PostMapping
-    public ResponseEntity<DiseaseModel> create(@RequestBody @Valid DiseaseDto requestBody) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(requestBody));
+    public ResponseEntity<Void> create(@RequestBody @Valid DiseaseDto requestBody) {
+        var disease = service.create(requestBody);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(disease.getName()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneById(@PathVariable String id) {
-        Optional<DiseaseModel> diseaseOpt = service.getOneById(id);
+        DiseaseModel diseaseOpt = service.getOneById(id);
 
-        if (!diseaseOpt.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(diseaseOpt.get());
+        return ResponseEntity.status(HttpStatus.OK).body(diseaseOpt);
     }
 
     @GetMapping

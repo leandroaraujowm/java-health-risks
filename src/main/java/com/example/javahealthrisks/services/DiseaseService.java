@@ -1,7 +1,6 @@
 package com.example.javahealthrisks.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.javahealthrisks.dtos.DiseaseDto;
 import com.example.javahealthrisks.dtos.UpdateDiseaseDto;
@@ -11,7 +10,7 @@ public interface DiseaseService {
 
     DiseaseModel create(DiseaseDto diseaseDto);
 
-    Optional<DiseaseModel> getOneById(String id);
+    DiseaseModel getOneById(String id);
 
     List<DiseaseModel> getAll();
 
