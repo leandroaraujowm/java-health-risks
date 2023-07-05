@@ -17,4 +17,10 @@ public interface CustomerService {
 
     void removeOneById(Long id);
 
+    void addDisease(Long userId, Long diseaseId);
+
+    void removeDisease(Long userId, Long diseaseId);
+
+    void getRiskCustomerList();
+
 }

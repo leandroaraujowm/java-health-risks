@@ -27,11 +27,11 @@ public class CustomerServiceImp implements CustomerService {
         if (!gender.equals('M') && !gender.equals('F')) {
             throw new NotFoundException("Invalid gender");
         }
-        
+
         var customerModel = new CustomerModel();
         BeanUtils.copyProperties(customerDto, customerModel);
         customerModel.setGender(gender);
-        
+
         return repository.save(customerModel);
     }
 
@@ -55,6 +55,24 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public void removeOneById(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public void addDisease(Long userId, Long diseaseId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addDisease'");
+    }
+
+    @Override
+    public void removeDisease(Long userId, Long diseaseId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeDisease'");
+    }
+
+    @Override
+    public void getRiskCustomerList() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getRiskCustomerList'");
     }
 
 }
