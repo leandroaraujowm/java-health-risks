@@ -54,8 +54,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public void removeOneById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeOneById'");
+        repository.deleteById(id);
     }
 
 }
