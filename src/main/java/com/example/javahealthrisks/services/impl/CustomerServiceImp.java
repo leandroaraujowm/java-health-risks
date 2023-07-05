@@ -47,8 +47,9 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public void updateOneById(Long id, CustomerDto customerDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateOneById'");
+        CustomerModel customerModel = getOneById(id);
+        BeanUtils.copyProperties(customerDto, customerModel);
+        repository.save(customerModel);
     }
 
     @Override
