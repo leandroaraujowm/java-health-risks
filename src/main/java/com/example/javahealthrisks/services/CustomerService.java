@@ -9,12 +9,12 @@ public interface CustomerService {
 
     CustomerModel create(CustomerDto customerDto);
 
-    CustomerModel getOneById(String id);
+    CustomerModel getOneById(Long id);
 
     List<CustomerModel> getAll();
 
-    void updateOneById(String id, CustomerDto customerDto);
+    void updateOneById(Long id, CustomerDto customerDto);
 
-    void removeOneById(String id);
+    void removeOneById(Long id);
 
 }

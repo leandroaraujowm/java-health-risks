@@ -36,9 +36,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public CustomerModel getOneById(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOneById'");
+    public CustomerModel getOneById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Invalid ID"));
     }
 
     @Override
@@ -48,13 +47,13 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public void updateOneById(String id, CustomerDto customerDto) {
+    public void updateOneById(Long id, CustomerDto customerDto) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateOneById'");
     }
 
     @Override
-    public void removeOneById(String id) {
+    public void removeOneById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeOneById'");
     }
