@@ -42,8 +42,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public List<CustomerModel> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        return repository.findAll();
     }
 
     @Override

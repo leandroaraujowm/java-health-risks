@@ -1,6 +1,7 @@
 package com.example.javahealthrisks.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,11 @@ public class CustomerController {
     @GetMapping("/{id}")
     public ResponseEntity<CustomerModel> getOneById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getOneById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CustomerModel>> getAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
     }
 
 }
