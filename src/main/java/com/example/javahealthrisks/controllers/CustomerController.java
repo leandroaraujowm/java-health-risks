@@ -74,4 +74,9 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @GetMapping("/disease")
+    public ResponseEntity<Object> getRiskCustomerList() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getRiskCustomerList());
+    }
+
 }

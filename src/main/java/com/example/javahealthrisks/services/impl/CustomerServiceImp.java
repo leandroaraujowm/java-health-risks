@@ -9,6 +9,7 @@ import com.example.javahealthrisks.dtos.CustomerDto;
 import com.example.javahealthrisks.models.CustomerModel;
 import com.example.javahealthrisks.models.DiseaseModel;
 import com.example.javahealthrisks.repositories.CustomerRepository;
+import com.example.javahealthrisks.repositories.RiskCustomerRepository;
 import com.example.javahealthrisks.services.CustomerService;
 import com.example.javahealthrisks.services.DiseaseService;
 import com.example.javahealthrisks.services.exceptions.NotFoundException;
@@ -17,10 +18,13 @@ import com.example.javahealthrisks.services.exceptions.NotFoundException;
 public class CustomerServiceImp implements CustomerService {
 
     private final CustomerRepository repository;
+    private final RiskCustomerRepository riskCustomerRepository;
     private final DiseaseService diseaseService;
 
-    public CustomerServiceImp(CustomerRepository repository, DiseaseService diseaseService) {
+    public CustomerServiceImp(CustomerRepository repository, RiskCustomerRepository riskCustomerRepository,
+            DiseaseService diseaseService) {
         this.repository = repository;
+        this.riskCustomerRepository = riskCustomerRepository;
         this.diseaseService = diseaseService;
     }
 
@@ -80,9 +84,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public void getRiskCustomerList() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRiskCustomerList'");
+    public Object getRiskCustomerList() {
+        return riskCustomerRepository.findAll();
     }
 
 }
