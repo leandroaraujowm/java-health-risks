@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,15 +16,17 @@ public class RiskCustomerModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long customerId;
-    private Integer diseaseScore;
+    @OneToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private CustomerModel customer;
+    private Double diseaseScore;
 
     public RiskCustomerModel() {
     }
 
-    public RiskCustomerModel(Long id, Long customerId, Integer diseaseScore) {
+    public RiskCustomerModel(Long id, CustomerModel customer, Double diseaseScore) {
         this.id = id;
-        this.customerId = customerId;
+        this.customer = customer;
         this.diseaseScore = diseaseScore;
     }
 
@@ -34,19 +38,19 @@ public class RiskCustomerModel implements Serializable {
         this.id = id;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public CustomerModel getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public void setCustomer(CustomerModel customer) {
+        this.customer = customer;
     }
 
-    public Integer getDiseaseScore() {
+    public Double getDiseaseScore() {
         return diseaseScore;
     }
 
-    public void setDiseaseScore(Integer diseaseScore) {
+    public void setDiseaseScore(Double diseaseScore) {
         this.diseaseScore = diseaseScore;
     }
 
@@ -55,7 +59,7 @@ public class RiskCustomerModel implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
+        result = prime * result + ((customer == null) ? 0 : customer.hashCode());
         result = prime * result + ((diseaseScore == null) ? 0 : diseaseScore.hashCode());
         return result;
     }
@@ -74,10 +78,10 @@ public class RiskCustomerModel implements Serializable {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (customerId == null) {
-            if (other.customerId != null)
+        if (customer == null) {
+            if (other.customer != null)
                 return false;
-        } else if (!customerId.equals(other.customerId))
+        } else if (!customer.equals(other.customer))
             return false;
         if (diseaseScore == null) {
             if (other.diseaseScore != null)
