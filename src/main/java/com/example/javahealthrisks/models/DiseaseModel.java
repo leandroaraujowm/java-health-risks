@@ -1,9 +1,14 @@
 package com.example.javahealthrisks.models;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,6 +22,10 @@ public class DiseaseModel implements Serializable {
     private String name;
     @NotNull
     private Integer grade;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "diseases")
+    private Set<CustomerModel> customers = new HashSet<>();
 
     public DiseaseModel() {
     }
@@ -40,6 +49,14 @@ public class DiseaseModel implements Serializable {
 
     public void setGrade(Integer grade) {
         this.grade = grade;
+    }
+
+    public Set<CustomerModel> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<CustomerModel> customers) {
+        this.customers = customers;
     }
 
     @Override

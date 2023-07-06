@@ -62,4 +62,10 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @PostMapping("/{customerId}/disease/{diseaseId}")
+    public ResponseEntity<Void> addDisease(@PathVariable Long customerId, @PathVariable String diseaseId) {
+        service.addDisease(customerId, diseaseId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }

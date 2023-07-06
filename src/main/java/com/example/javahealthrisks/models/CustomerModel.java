@@ -3,6 +3,8 @@ package com.example.javahealthrisks.models;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -13,6 +15,9 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +35,10 @@ public class CustomerModel implements Serializable {
     private Instant createdAt;
     @LastModifiedDate
     private Instant updatedAt;
+
+    @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "disease_id"))
+    private Set<DiseaseModel> diseases = new HashSet<>();
 
     public CustomerModel() {
     }
@@ -87,6 +96,14 @@ public class CustomerModel implements Serializable {
 
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Set<DiseaseModel> getDiseases() {
+        return diseases;
+    }
+
+    public void setDiseases(Set<DiseaseModel> diseases) {
+        this.diseases = diseases;
     }
 
     @Override
