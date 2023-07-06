@@ -68,4 +68,10 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @DeleteMapping("/{customerId}/disease/{diseaseId}")
+    public ResponseEntity<Void> removeDisease(@PathVariable Long customerId, @PathVariable String diseaseId) {
+        service.removeDisease(customerId, diseaseId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }

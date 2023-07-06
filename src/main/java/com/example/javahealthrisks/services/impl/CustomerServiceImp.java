@@ -72,8 +72,11 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public void removeDisease(Long customerId, String diseaseId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeDisease'");
+        DiseaseModel diseaseModel = diseaseService.getOneById(diseaseId);
+        CustomerModel customerModel = getOneById(customerId);
+
+        customerModel.getDiseases().remove(diseaseModel);
+        repository.save(customerModel);
     }
 
     @Override
