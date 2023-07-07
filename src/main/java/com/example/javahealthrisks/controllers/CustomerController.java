@@ -41,8 +41,8 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerModel> getOneById(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.getOneById(id));
+    public ResponseEntity<CustomerModel> getById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getById(id));
     }
 
     @GetMapping
@@ -51,14 +51,14 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateOneById(@PathVariable Long id, @RequestBody @Valid CustomerDto requestBody) {
-        service.updateOneById(id, requestBody);
+    public ResponseEntity<Void> updateById(@PathVariable Long id, @RequestBody @Valid CustomerDto requestBody) {
+        service.updateById(id, requestBody);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> removeOneById(@PathVariable Long id) {
-        service.removeOneById(id);
+    public ResponseEntity<Void> removeById(@PathVariable Long id) {
+        service.removeById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

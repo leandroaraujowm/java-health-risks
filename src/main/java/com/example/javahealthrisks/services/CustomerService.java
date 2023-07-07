@@ -9,13 +9,13 @@ public interface CustomerService {
 
     CustomerModel create(CustomerDto customerDto);
 
-    CustomerModel getOneById(Long id);
+    CustomerModel getById(Long id);
 
     List<CustomerModel> getAll();
 
-    void updateOneById(Long id, CustomerDto customerDto);
+    void updateById(Long id, CustomerDto customerDto);
 
-    void removeOneById(Long id);
+    void removeById(Long id);
 
     void addDisease(Long customerId, String diseaseId);
 

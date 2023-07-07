@@ -40,7 +40,7 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public CustomerModel getOneById(Long id) {
+    public CustomerModel getById(Long id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Invalid ID"));
     }
 
@@ -50,21 +50,21 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public void updateOneById(Long id, CustomerDto customerDto) {
-        CustomerModel customerModel = getOneById(id);
+    public void updateById(Long id, CustomerDto customerDto) {
+        CustomerModel customerModel = getById(id);
         BeanUtils.copyProperties(customerDto, customerModel);
         repository.save(customerModel);
     }
 
     @Override
-    public void removeOneById(Long id) {
+    public void removeById(Long id) {
         repository.deleteById(id);
     }
 
     @Override
     public void addDisease(Long customerId, String diseaseId) {
         DiseaseModel diseaseModel = diseaseService.getById(diseaseId);
-        CustomerModel customerModel = getOneById(customerId);
+        CustomerModel customerModel = getById(customerId);
 
         customerModel.getDiseases().add(diseaseModel);
         customerModel.setDiseaseScore();
@@ -74,7 +74,7 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public void removeDisease(Long customerId, String diseaseId) {
         DiseaseModel diseaseModel = diseaseService.getById(diseaseId);
-        CustomerModel customerModel = getOneById(customerId);
+        CustomerModel customerModel = getById(customerId);
 
         customerModel.getDiseases().remove(diseaseModel);
         customerModel.setDiseaseScore();
