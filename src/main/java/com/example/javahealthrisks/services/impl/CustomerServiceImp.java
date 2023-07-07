@@ -8,28 +8,19 @@ import org.springframework.stereotype.Service;
 import com.example.javahealthrisks.dtos.CustomerDto;
 import com.example.javahealthrisks.models.CustomerModel;
 import com.example.javahealthrisks.models.DiseaseModel;
-import com.example.javahealthrisks.models.RiskCustomerModel;
 import com.example.javahealthrisks.repositories.CustomerRepository;
-import com.example.javahealthrisks.repositories.RiskCustomerRepository;
 import com.example.javahealthrisks.services.CustomerService;
 import com.example.javahealthrisks.services.DiseaseService;
 import com.example.javahealthrisks.services.exceptions.NotFoundException;
 
-import jakarta.transaction.Transactional;
-
 @Service
 public class CustomerServiceImp implements CustomerService {
 
-    private final Integer MAX_RISK_CUSTOMERS = 10;
-
     private final CustomerRepository repository;
-    private final RiskCustomerRepository riskCustomerRepository;
     private final DiseaseService diseaseService;
 
-    public CustomerServiceImp(CustomerRepository repository, RiskCustomerRepository riskCustomerRepository,
-            DiseaseService diseaseService) {
+    public CustomerServiceImp(CustomerRepository repository, DiseaseService diseaseService) {
         this.repository = repository;
-        this.riskCustomerRepository = riskCustomerRepository;
         this.diseaseService = diseaseService;
     }
 
@@ -77,8 +68,6 @@ public class CustomerServiceImp implements CustomerService {
 
         customerModel.getDiseases().add(diseaseModel);
         repository.save(customerModel);
-
-        checkDiseaseScore(customerModel);
     }
 
     @Override
@@ -88,40 +77,12 @@ public class CustomerServiceImp implements CustomerService {
 
         customerModel.getDiseases().remove(diseaseModel);
         repository.save(customerModel);
-
-        checkDiseaseScore(customerModel);
     }
 
     @Override
     public Object getRiskCustomerList() {
-        return riskCustomerRepository.findAll();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getRiskCustomerList'");
     }
-
-    @Transactional
-    private void checkDiseaseScore(CustomerModel customerModel) {
-        int diseaseSum = 0;
-
-        for (DiseaseModel diseaseModel : customerModel.getDiseases()) {
-            diseaseSum += diseaseModel.getGrade();
-        }
-
-        double diseaseScore = (1 / (1 + Math.pow(Math.E, -(-2.8 + diseaseSum)))) * 100;
-
-        List<RiskCustomerModel> riskCustomers = riskCustomerRepository.findAll();
-
-        // TO DO: Refatorar
-        if (riskCustomers.size() < MAX_RISK_CUSTOMERS) {
-            for (RiskCustomerModel riskCustomer : riskCustomers) {
-                if (riskCustomer.getCustomer().equals(customerModel)) {
-                    riskCustomer.setDiseaseScore(diseaseScore);
-                    riskCustomerRepository.save(riskCustomer);
-                    return;
-                }
-            }
-
-            riskCustomerRepository.save(new RiskCustomerModel(null, customerModel, diseaseScore));
-            return;
-        }
-    }
-
+    
 }
