@@ -82,9 +82,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public Object getRiskCustomerList() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRiskCustomerList'");
+    public List<CustomerModel> getRiskCustomerList() {
+        return repository.findTop10ByOrderByDiseaseScoreDesc();
     }
     
 }

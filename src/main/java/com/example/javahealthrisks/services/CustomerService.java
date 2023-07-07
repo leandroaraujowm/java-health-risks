@@ -21,6 +21,6 @@ public interface CustomerService {
 
     void removeDisease(Long customerId, String diseaseId);
 
-    Object getRiskCustomerList();
+    List<CustomerModel> getRiskCustomerList();
 
 }
