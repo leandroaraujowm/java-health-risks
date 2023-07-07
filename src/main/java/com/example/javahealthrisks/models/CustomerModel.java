@@ -31,6 +31,7 @@ public class CustomerModel implements Serializable {
     private String name;
     private LocalDate birthDay;
     private Character gender;
+    private Double diseaseScore;
     @CreatedDate
     private Instant createdAt;
     @LastModifiedDate
@@ -43,11 +44,16 @@ public class CustomerModel implements Serializable {
     public CustomerModel() {
     }
 
-    public CustomerModel(Long id, String name, LocalDate birthDay, Character gender) {
+    public CustomerModel(Long id, String name, LocalDate birthDay, Character gender, Double diseaseScore,
+            Instant createdAt, Instant updatedAt, Set<DiseaseModel> diseases) {
         this.id = id;
         this.name = name;
         this.birthDay = birthDay;
         this.gender = gender;
+        this.diseaseScore = diseaseScore;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.diseases = diseases;
     }
 
     public Long getId() {
@@ -80,6 +86,20 @@ public class CustomerModel implements Serializable {
 
     public void setGender(Character gender) {
         this.gender = gender;
+    }
+
+    public Double getDiseaseScore() {
+        return diseaseScore;
+    }
+
+    public void setDiseaseScore() {
+        int diseaseSum = 0;
+
+        for (DiseaseModel disease : diseases) {
+            diseaseSum += disease.getGrade();
+        }
+
+        this.diseaseScore = (1 / (1 + Math.pow(Math.E, -(-2.8 + diseaseSum)))) * 100;
     }
 
     public Instant getCreatedAt() {

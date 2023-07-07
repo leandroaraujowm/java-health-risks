@@ -67,6 +67,7 @@ public class CustomerServiceImp implements CustomerService {
         CustomerModel customerModel = getOneById(customerId);
 
         customerModel.getDiseases().add(diseaseModel);
+        customerModel.setDiseaseScore();
         repository.save(customerModel);
     }
 
@@ -76,6 +77,7 @@ public class CustomerServiceImp implements CustomerService {
         CustomerModel customerModel = getOneById(customerId);
 
         customerModel.getDiseases().remove(diseaseModel);
+        customerModel.setDiseaseScore();
         repository.save(customerModel);
     }
 
