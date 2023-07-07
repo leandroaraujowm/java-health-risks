@@ -53,24 +53,28 @@ public class CustomerController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateById(@PathVariable Long id, @RequestBody @Valid CustomerDto requestBody) {
         service.updateById(id, requestBody);
+
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removeById(@PathVariable Long id) {
         service.removeById(id);
+
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PostMapping("/{customerId}/disease/{diseaseId}")
     public ResponseEntity<Void> addDisease(@PathVariable Long customerId, @PathVariable String diseaseId) {
         service.addDisease(customerId, diseaseId);
+
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @DeleteMapping("/{customerId}/disease/{diseaseId}")
     public ResponseEntity<Void> removeDisease(@PathVariable Long customerId, @PathVariable String diseaseId) {
         service.removeDisease(customerId, diseaseId);
+
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

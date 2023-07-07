@@ -11,6 +11,7 @@ import com.example.javahealthrisks.models.DiseaseModel;
 import com.example.javahealthrisks.repositories.CustomerRepository;
 import com.example.javahealthrisks.services.CustomerService;
 import com.example.javahealthrisks.services.DiseaseService;
+import com.example.javahealthrisks.services.exceptions.BadRequestException;
 import com.example.javahealthrisks.services.exceptions.NotFoundException;
 
 @Service
@@ -29,7 +30,7 @@ public class CustomerServiceImp implements CustomerService {
         Character gender = Character.toUpperCase(customerDto.gender());
 
         if (!gender.equals('M') && !gender.equals('F')) {
-            throw new NotFoundException("Invalid gender");
+            throw new BadRequestException("Invalid gender");
         }
 
         var customerModel = new CustomerModel();
@@ -52,7 +53,7 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public void updateById(Long id, CustomerDto customerDto) {
         CustomerModel customerModel = getById(id);
-        
+
         BeanUtils.copyProperties(customerDto, customerModel);
         repository.save(customerModel);
     }
@@ -86,5 +87,5 @@ public class CustomerServiceImp implements CustomerService {
     public List<CustomerModel> getRiskCustomerList() {
         return repository.findTop10ByOrderByDiseaseScoreDesc();
     }
-    
+
 }
