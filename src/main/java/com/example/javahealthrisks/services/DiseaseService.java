@@ -10,12 +10,12 @@ public interface DiseaseService {
 
     DiseaseModel create(DiseaseDto diseaseDto);
 
-    DiseaseModel getOneById(String id);
+    DiseaseModel getById(String id);
 
     List<DiseaseModel> getAll();
 
-    void updateOneById(String id, UpdateDiseaseDto updateDiseaseDto);
+    void updateById(String id, UpdateDiseaseDto updateDiseaseDto);
 
-    void removeOneById(String id);
+    void removeById(String id);
 
 }

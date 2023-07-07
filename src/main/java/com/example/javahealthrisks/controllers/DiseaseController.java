@@ -41,8 +41,8 @@ public class DiseaseController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getOneById(@PathVariable String id) {
-        DiseaseModel diseaseOpt = service.getOneById(id);
+    public ResponseEntity<Object> getById(@PathVariable String id) {
+        DiseaseModel diseaseOpt = service.getById(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(diseaseOpt);
     }
@@ -53,15 +53,15 @@ public class DiseaseController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> updateOneById(@PathVariable String id, @RequestBody UpdateDiseaseDto requestBody) {
-        service.updateOneById(id, requestBody);
+    public ResponseEntity<Void> updateById(@PathVariable String id, @RequestBody UpdateDiseaseDto requestBody) {
+        service.updateById(id, requestBody);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> removeOneById(@PathVariable String id) {
-        service.removeOneById(id);
+    public ResponseEntity<Void> removeById(@PathVariable String id) {
+        service.removeById(id);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }

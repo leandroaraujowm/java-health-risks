@@ -63,7 +63,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public void addDisease(Long customerId, String diseaseId) {
-        DiseaseModel diseaseModel = diseaseService.getOneById(diseaseId);
+        DiseaseModel diseaseModel = diseaseService.getById(diseaseId);
         CustomerModel customerModel = getOneById(customerId);
 
         customerModel.getDiseases().add(diseaseModel);
@@ -73,7 +73,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public void removeDisease(Long customerId, String diseaseId) {
-        DiseaseModel diseaseModel = diseaseService.getOneById(diseaseId);
+        DiseaseModel diseaseModel = diseaseService.getById(diseaseId);
         CustomerModel customerModel = getOneById(customerId);
 
         customerModel.getDiseases().remove(diseaseModel);

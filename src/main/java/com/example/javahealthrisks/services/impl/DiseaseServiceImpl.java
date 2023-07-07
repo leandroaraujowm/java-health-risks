@@ -30,7 +30,7 @@ public class DiseaseServiceImpl implements DiseaseService {
     }
 
     @Override
-    public DiseaseModel getOneById(String id) {
+    public DiseaseModel getById(String id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Invalid ID"));
     }
 
@@ -40,14 +40,14 @@ public class DiseaseServiceImpl implements DiseaseService {
     }
 
     @Override
-    public void updateOneById(String id, UpdateDiseaseDto updateDiseaseDto) {
+    public void updateById(String id, UpdateDiseaseDto updateDiseaseDto) {
         DiseaseModel diseaseModel = repository.findById(id).get();
         diseaseModel.setGrade(updateDiseaseDto.grade());
         repository.save(diseaseModel);
     }
 
     @Override
-    public void removeOneById(String id) {
+    public void removeById(String id) {
         repository.deleteById(id);
     }
 
