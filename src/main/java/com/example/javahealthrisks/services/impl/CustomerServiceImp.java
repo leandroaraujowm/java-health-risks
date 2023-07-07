@@ -41,7 +41,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public CustomerModel getById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new NotFoundException("Invalid ID"));
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Invalid customer ID"));
     }
 
     @Override
@@ -52,6 +52,7 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public void updateById(Long id, CustomerDto customerDto) {
         CustomerModel customerModel = getById(id);
+        
         BeanUtils.copyProperties(customerDto, customerModel);
         repository.save(customerModel);
     }
