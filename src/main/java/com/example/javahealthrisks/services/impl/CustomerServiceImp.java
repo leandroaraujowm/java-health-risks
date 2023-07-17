@@ -3,6 +3,8 @@ package com.example.javahealthrisks.services.impl;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.javahealthrisks.dtos.CustomerDto;
@@ -46,8 +48,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public List<CustomerModel> getAll() {
-        return repository.findAll();
+    public Page<CustomerModel> getAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

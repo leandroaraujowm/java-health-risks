@@ -1,6 +1,7 @@
 package com.example.javahealthrisks.services;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.javahealthrisks.dtos.DiseaseDto;
 import com.example.javahealthrisks.dtos.UpdateDiseaseDto;
@@ -12,7 +13,7 @@ public interface DiseaseService {
 
     DiseaseModel getById(String id);
 
-    List<DiseaseModel> getAll();
+    Page<DiseaseModel> getAll(Pageable pageable);
 
     void updateById(String id, UpdateDiseaseDto updateDiseaseDto);
 

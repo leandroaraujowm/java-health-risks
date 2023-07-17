@@ -2,6 +2,9 @@ package com.example.javahealthrisks.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.example.javahealthrisks.dtos.CustomerDto;
 import com.example.javahealthrisks.models.CustomerModel;
 
@@ -11,7 +14,7 @@ public interface CustomerService {
 
     CustomerModel getById(Long id);
 
-    List<CustomerModel> getAll();
+    Page<CustomerModel> getAll(Pageable pageable);
 
     void updateById(Long id, CustomerDto customerDto);
 
