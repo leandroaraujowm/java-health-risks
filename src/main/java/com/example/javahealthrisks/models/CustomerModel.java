@@ -31,7 +31,7 @@ public class CustomerModel implements Serializable {
     private String name;
     private LocalDate birthDay;
     private Character gender;
-    private Double diseaseScore;
+    private double diseaseScore;
     @CreatedDate
     private Instant createdAt;
     @LastModifiedDate
