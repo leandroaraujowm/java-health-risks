@@ -1,5 +1,7 @@
 package com.example.javahealthrisks.services.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,7 +48,13 @@ public class DiseaseServiceImpl implements DiseaseService {
 
     @Override
     public void updateById(String id, UpdateDiseaseDto updateDiseaseDto) {
-        DiseaseModel diseaseModel = repository.findById(id).get();
+        Optional<DiseaseModel> diseaseOpt = repository.findById(id);
+
+        if (!diseaseOpt.isPresent()) {
+            throw new NotFoundException("Invalid disease ID");
+        }
+
+        DiseaseModel diseaseModel = diseaseOpt.get();
 
         diseaseModel.setGrade(updateDiseaseDto.grade());
         repository.save(diseaseModel);

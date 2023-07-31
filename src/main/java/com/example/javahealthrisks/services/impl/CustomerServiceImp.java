@@ -1,6 +1,7 @@
 package com.example.javahealthrisks.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -68,7 +69,13 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public void addDisease(Long customerId, String diseaseId) {
         DiseaseModel diseaseModel = diseaseService.getById(diseaseId);
-        CustomerModel customerModel = getById(customerId);
+        Optional<CustomerModel> customerOpt = repository.findById(customerId);
+
+        if (!customerOpt.isPresent()) {
+            throw new NotFoundException("Customer not found");
+        }
+
+        CustomerModel customerModel = customerOpt.get();
 
         customerModel.getDiseases().add(diseaseModel);
         customerModel.setDiseaseScore();
