@@ -85,7 +85,13 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public void removeDisease(Long customerId, String diseaseId) {
         DiseaseModel diseaseModel = diseaseService.getById(diseaseId);
-        CustomerModel customerModel = getById(customerId);
+        Optional<CustomerModel> customerOpt = repository.findById(customerId);
+
+        if (!customerOpt.isPresent()) {
+            throw new NotFoundException("Customer not found");
+        }
+
+        CustomerModel customerModel = customerOpt.get();
 
         customerModel.getDiseases().remove(diseaseModel);
         customerModel.setDiseaseScore();
