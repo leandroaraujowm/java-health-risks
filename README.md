@@ -34,10 +34,10 @@ _java-health-risks_ é uma __API REST__ criada com a linguagem de programação 
 
 ```shell
 # Baixar a imagem do Docker Hub
-docker pull ordanael/java-health-risks:1.0.0
+docker pull rockyracum/java-health-risks:latest
 
 # Criar um container a partir da imagem, expôr a porta 8080 e nomear o container
-docker run -p 8080:8080 --name java-health-risks ordanael/java-health-risks:1.0.0
+docker run -p 8080:8080 --name java-health-risks rockyracum/java-health-risks:latest
 
 # A aplicação já está em execução neste ponto, utilize os comandos abaixo para desligar a aplicação
 
@@ -51,7 +51,7 @@ docker start java-health-risks
 docker rm java-health-risks
 
 # Remover imagem
-docker rmi ordanael/java-health-risks:1.0.0
+docker rmi rockyracum/java-health-risks:latest
 ```
 
 ### Com Git
@@ -60,7 +60,7 @@ docker rmi ordanael/java-health-risks:1.0.0
 
 ```shell
 # Clonar o repositório git
-git clone https://github.com/ordanael/java-health-risks.git
+git clone https://github.com/rockyracum/java-health-risks.git
 
 # Entrar na pasta do repositório
 cd java-health-risks
