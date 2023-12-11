@@ -4,7 +4,7 @@
 
 _java-health-risks_ é uma __API REST__ criada com a linguagem de programação Java e o framework Spring, desenvolvida a partir do [desafio backend _público_ da Oli Saúde](https://github.com/olisaude/teste-dev-backend).
 
-[![License](https://img.shields.io/npm/l/react)](https://github.com/ordanael/java-health-risks/blob/main/LICENSE) 
+[![License](https://img.shields.io/npm/l/react)](https://github.com/rockyracum/java-health-risks/blob/main/LICENSE) 
 
 ## Tecnologias
 
