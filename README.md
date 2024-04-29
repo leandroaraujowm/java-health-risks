@@ -4,7 +4,7 @@
 
 _java-health-risks_ é uma __API REST__ criada com a linguagem de programação Java e o framework Spring, desenvolvida a partir do [desafio backend _público_ da Oli Saúde](https://github.com/olisaude/teste-dev-backend).
 
-[![License](https://img.shields.io/npm/l/react)](https://github.com/rockyracum/java-health-risks/blob/main/LICENSE) 
+[![License](https://img.shields.io/npm/l/react)](https://github.com/leobaraujo/java-health-risks/blob/main/LICENSE) 
 
 ## Tecnologias
 
@@ -34,10 +34,10 @@ _java-health-risks_ é uma __API REST__ criada com a linguagem de programação 
 
 ```shell
 # Baixar a imagem do Docker Hub
-docker pull rockyracum/java-health-risks:latest
+docker pull leobaraujo/java-health-risks:latest
 
 # Criar um container a partir da imagem, expôr a porta 8080 e nomear o container
-docker run -p 8080:8080 --name java-health-risks rockyracum/java-health-risks:latest
+docker run -p 8080:8080 --name java-health-risks leobaraujo/java-health-risks:latest
 
 # A aplicação já está em execução neste ponto, utilize os comandos abaixo para desligar a aplicação
 
@@ -51,7 +51,7 @@ docker start java-health-risks
 docker rm java-health-risks
 
 # Remover imagem
-docker rmi rockyracum/java-health-risks:latest
+docker rmi leobaraujo/java-health-risks:latest
 ```
 
 ### Com Git
@@ -60,7 +60,7 @@ docker rmi rockyracum/java-health-risks:latest
 
 ```shell
 # Clonar o repositório git
-git clone https://github.com/rockyracum/java-health-risks.git
+git clone https://github.com/leobaraujo/java-health-risks.git
 
 # Entrar na pasta do repositório
 cd java-health-risks
